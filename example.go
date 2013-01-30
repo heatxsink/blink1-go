@@ -10,8 +10,9 @@
 
 package main
 
+import "github.com/heatxsink/blink1-go/blink1"
+
 import (
-	"./blink1"
 	"time"
 )
 

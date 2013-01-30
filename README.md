@@ -15,9 +15,15 @@ to run, you'll first need to install *libusb*.
 
 	$ brew install libusb-compat
 	
+4. make sure your $GOPATH is set to writable location by your user
+5. get and install the remote package
+
+	$ go get github.com/heatxsink/blink1-go/blink1
+	$ go install github.com/heatxsink.com/blink1-go/blink1
+
 4. *cd* to the directory with this project's files, then to build and run
 
-	$ go run blink1.go
+	$ go run example.go
 
 ## derivatives ##
 the code that interfaces *libusb* which is in C to Go is manually forked from GaryBoone's [GoBlink](https://github.com/GaryBoone/GoBlink) project.
