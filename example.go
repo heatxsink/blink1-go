@@ -5,7 +5,7 @@
 // Modified by: Nick Granado, 2013
 //
 // To run type:
-// $ go run blinky1.go
+// $ go run example.go
 //
 
 package main

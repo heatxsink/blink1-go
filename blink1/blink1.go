@@ -1,11 +1,12 @@
 //
-// hid.go
+// used to be hid.go, but is now blink1.go
 // 
 // Go interface for C HID USB driver (usblib)
 // 
 // See https://github.com/GaryBoone/GoBlink for more information
 //
 // (c) Gary Boone, 2012. 
+// Modified by: Nick Granado, 2013
 //
 // NOTE: For CGO, there should be no comments before the // #include lines.
 // Also, there should be no space between // #include lines and import line!
