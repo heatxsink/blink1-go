@@ -15,7 +15,7 @@ to run, you'll first need to install *libusb*.
 
 	$ brew install libusb-compat
 	
-4. make sure your $GOPATH is set to writable location by your user
+4. make sure your $GOPATH is set to writable location by your user (i use the following location $HOME/go)
 5. get and install the remote package
 
 	$ go get github.com/heatxsink/blink1-go/blink1
