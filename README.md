@@ -19,8 +19,6 @@ to run, you'll first need to install *libusb*.
 5. get and install the remote package
 
 	$ go get github.com/heatxsink/blink1-go/blink1
-	
-	$ go install github.com/heatxsink.com/blink1-go/blink1
 
 4. *cd* to the directory with this project's files, then to build and run
 
