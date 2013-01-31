@@ -7,6 +7,7 @@
 // To run type:
 // $ go run example.go
 //
+package main
 
 import "github.com/heatxsink/blink1-go"
 
