@@ -61,8 +61,12 @@ func NewBlink() *Blink {
 }
 
 // blink white num times: on for blinkMs milliseconds then off for blinkMs milliseconds 
-func (b *Blink) Blink(num int, blinkMs time.Duration) {
-	blink(b.dev, num, blinkMs)
+func (bl *Blink) Blink(num int, blinkMs time.Duration) {
+	blink(bl.dev, num, blinkMs, 0, 0, 0, 255, 255, 255)
+}
+
+func (bl *Blink) BlinkWithColor(num int, blinkMs time.Duration, r, g, b int, ar, ag, ab int) {
+	blink(bl.dev, num, blinkMs, r, g, b, ar, ag, ab)
 }
 
 func (bl *Blink) SetRGB(r, g, b int) {
@@ -70,26 +74,30 @@ func (bl *Blink) SetRGB(r, g, b int) {
 }
 
 // show num random colors, each for blinkMs milliseconds
-func (b *Blink) Random(num int, blinkMs time.Duration) {
-	random(b.dev, num, blinkMs)
+func (bl *Blink) Random(num int, blinkMs time.Duration) {
+	random(bl.dev, num, blinkMs)
 }
 
-func (b *Blink) open() {
-	if !openBlink1(&b.dev) {
+func (bl *Blink) open() {
+	if !openBlink1(&bl.dev) {
 		log.Print("error: couldn't open blink1.")
 		return
 	}
-	runtime.SetFinalizer(b, (*Blink).close)
+	runtime.SetFinalizer(bl, (*Blink).close)
 }
 
-func (b *Blink) close() {
-	C.usbhidCloseDevice(b.dev)
+func (bl *Blink) close() {
+	C.usbhidCloseDevice(bl.dev)
 }
 
-func blink(dev *C.struct_usbDevice_t, num int, blinkMs time.Duration) {
-	v := [2]int{0, 255}
-	for i := 0; i < num*2; i++ {
-		rc := fadeToRgbBlink1(dev, fadeMs, v[i%2], v[i%2], v[i%2])
+func blink(dev *C.struct_usbDevice_t, num int, blinkMs time.Duration, r, g, b int, ar, ag, ab int) {
+	for i := 0; i < num * 2; i++ {
+		var rc C.int
+		if i % 2 == 0{
+			rc = fadeToRgbBlink1(dev, fadeMs, ar, ag, ab)
+		} else {
+			rc = fadeToRgbBlink1(dev, fadeMs, r, g, b)
+		}
 		if rc != 0 { // on error, do something, anything. come on.
 			log.Print("error in blink: couldn't open blink1. Error: ", errorMsgBlink1(rc))
 		}

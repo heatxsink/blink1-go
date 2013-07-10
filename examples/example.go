@@ -9,10 +9,9 @@
 //
 package main
 
-import "github.com/heatxsink/blink1-go"
-
 import (
 	"time"
+	"../blink1"
 )
 
 func main() {
@@ -24,6 +23,9 @@ func main() {
 	
 	// first lets blink 10 times
 	b.Blink(10, blink_interval)
+
+	// lets add some color!
+	b.BlinkWithColor(10, blink_interval, 0, 0, 0, 255, 0, 0)
 	
 	time.Sleep(time_one_second)
 	
